@@ -1,0 +1,152 @@
+/* VARIÁVEIS DE CORES */
+:root {
+    --color-sand: #EAE6DF;
+    --color-white: #FFFFFF;
+    --color-text: #333333;
+    --color-accent: #5A5A5A;
+}
+
+/* RESET BÁSICO */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'InterVariable', Arial, sans-serif; font-feature-settings: 'liga' 1, 'calt' 1; color: var(--color-text); background: var(--color-white); }
+
+/* LÓGICA DE INTERCALAR CORES */
+section.content-section:nth-of-type(odd) { background-color: var(--color-white); }
+section.content-section:nth-of-type(even) { background-color: var(--color-sand); }
+
+/* LAYOUT */
+.container { max-width: 1200px; margin: 0 auto; padding: 60px 20px; }
+.text-center { text-align: center; }
+
+/* HERO */
+.hero { position: relative; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; color: white; }
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 25px; /* Espaço entre o logo e o texto */
+    z-index: 1; /* Garante que fique acima da camada escura do vídeo */
+}
+.hero-video { position: absolute; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+
+.hero-overlay { position: absolute; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: -1; }
+
+.hero-tagline { letter-spacing: 4px; text-transform: uppercase; font-size: 0.9rem; }
+
+
+/* Atualize o grid das categorias */
+.categories-grid { 
+    display: grid; 
+    grid-template-columns: 1fr;
+    gap: 15px; 
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .categories-grid { grid-template-columns: repeat(2, 2fr); }
+}
+
+/* Regras do Card e do Texto por cima da imagem */
+.category-card {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.category-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.category-card span {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: #FFFFFF;
+    font-size: 1rem;
+    font-weight: 500;
+    z-index: 2;
+}
+
+/* GRIDS RESPONSIVOS (Mobile First) */
+.welcome-grid, .location-grid { display: grid; gap: 40px; }
+
+@media (min-width: 768px)
+    .welcome-grid, .location-grid { grid-template-columns: 1fr 1fr; align-items: center;
+}
+
+/* CARROSSEL SIMPLES */
+.carousel-wrapper { overflow: hidden; border-radius: 10px; }
+.carousel { display: flex; gap: 10px; cursor: grab; }
+.carousel-item img { width: 300px; height: 400px; object-fit: cover; border-radius: 10px; }
+
+/* BOTÕES */
+.btn-primary { 
+    display: inline-block; padding: 15px 35px; background: var(--color-accent); 
+    color: white; text-decoration: none; border-radius: 50px; 
+    text-transform: uppercase; font-size: 0.8rem; margin-top: 20px;
+}
+
+.main-footer { padding: 40px; text-align: center; font-size: 0.7rem; letter-spacing: 1px; }
+
+
+/* INSTAGRAM SECTION */
+.insta-subtitle { 
+    margin-bottom: 30px; 
+    font-size: 0.9rem; 
+    text-transform: uppercase; 
+    letter-spacing: 1px; 
+    color: #666;
+}
+
+.insta-profile { 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    gap: 30px; 
+    margin-bottom: 25px; 
+}
+
+.insta-avatar { 
+    width: 80px; 
+    height: 80px; 
+    border-radius: 50%; 
+    object-fit: cover; 
+    border: 2px solid #ddd; /* Bordinha leve de avatar */
+}
+
+.insta-stats { 
+    display: flex; 
+    gap: 20px; 
+    font-size: 0.85rem; 
+}
+
+.insta-stats .stat strong {
+    font-size: 1.1rem;
+    color: var(--color-text);
+}
+
+.insta-follow-btn { 
+    margin-bottom: 40px; 
+    padding: 10px 40px; 
+}
+
+/* Grid do feed: 3 colunas perfeitas sem espaçamento gigante */
+.insta-grid { 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 5px; 
+    max-width: 800px; /* Limita a largura para não ficar gigante no desktop */
+    margin: 0 auto;
+}
+
+.insta-grid img { 
+    width: 100%; 
+    aspect-ratio: 1 / 1; /* Força ser um quadrado perfeito igual no app */
+    object-fit: cover; 
+}

@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disk Concept | Elegância é se sentir bem</title>
+    <style>
+        /* =========================================
+           VARIÁVEIS E RESET
+        ========================================= */
+        :root {
+            --bg-color: #EAE6DF; /* Tom de areia/bege claro do background */
+            --text-dark: #333333;
+            --btn-bg: #5A5A5A;
+            --btn-text: #FFFFFF;
+            --font-main: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Altere para a fonte exata do Figma */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* =========================================
+           HERO SECTION (VÍDEO DE FUNDO)
+        ========================================= */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            text-align: center;
+            color: #fff;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4); /* Escurece o vídeo para dar leitura ao texto */
+            z-index: -1;
+        }
+
+        .hero-content h2 {
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            font-weight: 300;
+            letter-spacing: 5px;
+        }
+
+        /* =========================================
+           SEÇÃO BEM-VINDA & CARROSSEL
+        ========================================= */
+        .welcome-section {
+            display: flex;
+            flex-direction: column;
+            padding: 10% 5%;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .welcome-text {
+            flex: 1;
+        }
+
+        .welcome-text h2 {
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        .welcome-text p {
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--btn-bg);
+            color: var(--btn-text);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            margin-top: 20px;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #333;
+        }
+
+        /* Carrossel Simples */
+        .carousel-container {
+            flex: 1.5;
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding-bottom: 10px;
+        }
+
+        .carousel-item {
+            min-width: 250px;
+            scroll-snap-align: center;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        /* Oculta barra de rolagem mas mantém funcionalidade */
+        .carousel-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* =========================================
+           SEÇÃO CATEGORIAS (GRID)
+        ========================================= */
+        .categories-section {
+            padding: 5% 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .categories-section h2 {
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .category-card {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            height: 150px;
+        }
+
+        .category-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .category-overlay {
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            color: white;
+            font-weight: 500;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+        }
+
+        /* =========================================
+           RODAPÉ / LOCALIZAÇÃO
+        ========================================= */
+        .location-section {
+            display: flex;
+            flex-direction: column;
+            padding: 10% 5%;
+            background-color: #DCD8D0; /* Leve contraste */
+            gap: 40px;
+        }
+
+        .map-container {
+            flex: 1;
+            border-radius: 15px;
+            overflow: hidden;
+            min-height: 300px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .location-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .location-info h3 {
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .location-info p {
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background-color: var(--bg-color);
+            font-size: 0.8rem;
+        }
+
+        /* =========================================
+           MEDIA QUERIES (DESKTOP)
+        ========================================= */
+        @media (min-width: 768px) {
+            .welcome-section {
+                flex-direction: row;
+                align-items: center;
+            }
+
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .category-card {
+                height: 200px;
+            }
+
+            .location-section {
+                flex-direction: row;
+                max-width: 1200px;
+                margin: 0 auto;
+                background-color: transparent;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <video class="hero-video" autoplay loop muted playsinline poster="assets/placeholder.jpg">
+            <source src="assets/seu-video.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h2>Elegância é se sentir bem</h2>
+            <h1>DISK<br><span style="font-size: 1rem; letter-spacing: 8px;">CONCEPT</span></h1>
+        </div>
+    </header>
+
+    <section class="welcome-section">
+        <div class="welcome-text">
+            <h2>Seja Bem-vinda<br>à Disk Concept</h2>
+            <p>Na Disk Concept, cada detalhe foi pensado para oferecer mais do que produtos - entregamos uma jornada de beleza personalizada, em um ambiente que combina sofisticação, leveza e cuidado.</p>
+            <p>Nossa curadoria reúne fragrâncias icônicas, maquiagens desejadas e linhas capilares de alta performance. Tudo com o atendimento acolhedor que transforma cada visita em um momento só seu.</p>
+            <a href="#" class="btn">Agende sua visita</a>
+        </div>
+        
+        <div class="carousel-container">
+            <div class="carousel-item"><img src="https://via.placeholder.com/300x400/ccc/333?text=Foto+Loja+1" alt="Loja Interno 1"></div>
+            <div class="carousel-item"><img src="https://via.placeholder.com/300x400/ccc/333?text=Foto+Loja+2" alt="Loja Interno 2"></div>
+            <div class="carousel-item"><img src="https://via.placeholder.com/300x400/ccc/333?text=Foto+Loja+3" alt="Loja Interno 3"></div>
+        </div>
+    </section>
+
+    <section class="categories-section">
+        <h2>AQUI VOCÊ ENCONTRA</h2>
+        <div class="categories-grid">
+            <div class="category-card">
+                <img src="assets/Frame 2.png" alt="Beleza e Maquiagem">
+                <div class="category-overlay">Beleza e Maquiagem</div>
+            </div>
+            <div class="category-card">
+                <img src="assets/Frame 4.png" alt="Fragrâncias Exclusivas">
+                <div class="category-overlay">Fragrâncias Exclusivas</div>
+            </div>
+            <div class="category-card">
+                <img src="assets/Frame 3.png" alt="Skincare">
+                <div class="category-overlay">Skincare e Autocuidado</div>
+            </div>
+            <div class="category-card">
+                <img src="assets/Frame 5.png" alt="Presentes">
+                <div class="category-overlay">Presentes e Curadoria Especial</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="location-section">
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3460.778848123!2d-51.1345!3d-29.6844!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjnCsDQxJzA0LjAiUyA1McKwMDgnMDQuMiJX!5e0!3m2!1spt-BR!2sbr!4v1611234567890!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        <div class="location-info">
+            <h3>ONDE ESTAMOS</h3>
+            <p><strong>Disk Concept</strong><br>
+            Av. Dr. Maurício Cardoso, 1130 - Loja 10<br>
+            Jardim Mauá, Novo Hamburgo - RS</p>
+            <br>
+            <p><strong>Horário de funcionamento</strong><br>
+            Segunda a sexta: 09:00 - 19:00<br>
+            Sábado: 09:00 - 17:00</p>
+            <br>
+            <p><strong>Contato / WhatsApp</strong><br>
+            (51) 99999-9999</p>
+            
+            <a href="#" class="btn" style="width: max-content; margin-top: 30px;">Agende sua visita</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>DISK CONCEPT | ELEGÂNCIA É SE SENTIR BEM</p>
+        <p style="margin-top: 10px; font-size: 0.7rem; color: #777;">CONHEÇA TAMBÉM DISK KOSMETHICOS © 2026</p>
+    </footer>
+
+    <script>
+        const slider = document.querySelector('.carousel-container');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        slider.addEventListener('mousedown', (e) => {
+            isDown = true;
+            slider.style.cursor = 'grabbing';
+            startX = e.pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+        });
+        slider.addEventListener('mouseleave', () => {
+            isDown = false;
+            slider.style.cursor = 'grab';
+        });
+        slider.addEventListener('mouseup', () => {
+            isDown = false;
+            slider.style.cursor = 'grab';
+        });
+        slider.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - slider.offsetLeft;
+            const walk = (x - startX) * 2; // Velocidade da rolagem
+            slider.scrollLeft = scrollLeft - walk;
+        });
+    </script>
+</body>
+</html>
