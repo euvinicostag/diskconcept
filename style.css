@@ -315,6 +315,49 @@ p {
 }
 
 /* ============================================================
+   MARCAS — slider infinito
+   ============================================================ */
+.brands-track-wrapper {
+  overflow: hidden;
+  padding: 32px 0 64px;
+  /* fade nas bordas */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+.brands-track {
+  display: flex;
+  width: max-content;
+  animation: brandScroll 32s linear infinite;
+}
+
+.brands-track:hover { animation-play-state: paused; }
+
+.brands-list {
+  display: flex;
+  align-items: center;
+  gap: 64px;
+  padding: 0 32px;
+}
+
+.brands-list img {
+  height: 28px;
+  width: auto;
+  object-fit: contain;
+  filter: grayscale(1) opacity(0.55);
+  transition: filter 0.35s ease;
+}
+
+.brands-list img:hover {
+  filter: grayscale(0) opacity(1);
+}
+
+@keyframes brandScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ============================================================
    INSTAGRAM
    ============================================================ */
 .insta-subtitle {
