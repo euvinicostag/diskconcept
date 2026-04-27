@@ -196,7 +196,8 @@ p {
    ============================================================ */
 .welcome-grid {
   display: grid;
-  gap: 60px;
+  grid-template-columns: 1fr;
+  gap: 48px;
   align-items: center;
 }
 
@@ -212,33 +213,36 @@ p {
 .carousel-wrapper {
   position: relative;
   border-radius: var(--radius);
-  overflow: visible; /* permite que o drag capture eventos fora da área */
+  overflow: hidden;
 }
 
 .carousel {
   display: flex;
   gap: 12px;
-  overflow-x: auto;
+  overflow-x: scroll;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .carousel::-webkit-scrollbar { display: none; }
-.carousel.active { cursor: grabbing; }
+.carousel.is-dragging { cursor: grabbing; scroll-snap-type: none; }
 
 .carousel-item {
-  flex: 0 0 auto;
+  flex: 0 0 100%;
   scroll-snap-align: start;
 }
 
 .carousel-item img {
-  width: clamp(240px, 45vw, 340px);
-  height: clamp(300px, 55vw, 440px);
+  width: 100%;
+  height: clamp(300px, 45vw, 480px);
   object-fit: cover;
   border-radius: var(--radius);
   display: block;
+  pointer-events: none;
 }
 
 .carousel-controls {
@@ -365,7 +369,6 @@ p {
 
 /* ============================================================
    INSTAGRAM
-
    ============================================================ */
 .insta-subtitle {
   font-size: 0.75rem;
