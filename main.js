@@ -29,7 +29,6 @@ function dragMove(x) {
 function dragEnd() {
   drag.active = false;
   carousel.classList.remove('is-dragging');
-  // Snap manual ao item mais próximo
   const itemW = carousel.querySelector('.carousel-item')?.offsetWidth || 0;
   if (itemW) {
     const idx = Math.round(carousel.scrollLeft / itemW);
@@ -56,3 +55,24 @@ const slideBy = dir => {
 
 prevBtn.addEventListener('click', () => slideBy(-1));
 nextBtn.addEventListener('click', () => slideBy(1));
+
+// ── 2. REVEAL ON SCROLL ───────────────────────────────────────
+// Aqui está o código que estava faltando para as coisas aparecerem
+const observerOptions = {
+  root: null,
+  rootMargin: '0px',
+  threshold: 0.15 // Ativa quando 15% do elemento aparece
+};
+
+const observer = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target); // Para de observar depois que apareceu (performance)
+    }
+  });
+}, observerOptions);
+
+document.querySelectorAll('.reveal').forEach(el => {
+  observer.observe(el);
+});
