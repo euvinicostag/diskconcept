@@ -69,3 +69,29 @@ const observer = new IntersectionObserver((entries, observer) => {
 document.querySelectorAll('.reveal').forEach(el => {
   observer.observe(el);
 });
+
+
+// ── AUTOPLAY DO CARROSSEL ──────────────────────────────────
+let autoPlayInterval;
+const autoPlayDelay = 3000; // Tempo em milissegundos (3 segundos)
+
+function startAutoPlay() {
+  autoPlayInterval = setInterval(() => {
+    slideBy(1);
+  }, autoPlayDelay);
+}
+
+function stopAutoPlay() {
+  clearInterval(autoPlayInterval);
+}
+
+// Inicia o autoplay assim que a página carrega
+startAutoPlay();
+
+// Pausa quando o mouse está sobre o carrossel e volta quando sai
+carousel.addEventListener('mouseenter', stopAutoPlay);
+carousel.addEventListener('mouseleave', startAutoPlay);
+
+// Para mobile: pausa ao tocar e volta ao soltar
+carousel.addEventListener('touchstart', stopAutoPlay, { passive: true });
+carousel.addEventListener('touchend', startAutoPlay);
