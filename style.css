@@ -19,6 +19,7 @@
 /* RESET */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
+img { display: block; max-width: 100%; }
 
 body {
   font-family: 'Jost', sans-serif;
@@ -49,7 +50,6 @@ p {
 
 .eyebrow {
   display: block;
-  font-family: 'Jost', sans-serif;
   font-size: 0.7rem;
   font-weight: 500;
   letter-spacing: 0.3em;
@@ -167,7 +167,6 @@ p {
   border: 1px solid var(--dark);
   color: var(--dark);
   text-decoration: none;
-  font-family: 'Jost', sans-serif;
   font-size: 0.72rem;
   font-weight: 500;
   letter-spacing: 0.22em;
@@ -324,12 +323,9 @@ p {
 /* ============================================================
    MARCAS — slider infinito
    ============================================================ */
-/* wrapper isola o reveal do track interno */
 .brands-track-wrapper {
   overflow: hidden;
   padding: 32px 0 64px;
-  opacity: 1 !important;
-  transform: none !important;
   -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
   mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
 }
@@ -337,7 +333,7 @@ p {
 .brands-track {
   display: flex;
   width: max-content;
-  animation: brandScroll 32s linear infinite;
+  animation: brandScroll 31s linear infinite;
   will-change: transform;
 }
 
@@ -346,13 +342,10 @@ p {
 .brands-list {
   display: flex;
   align-items: center;
-  gap: 64px;
-  padding: 0 32px;
+  gap: 40px;
 }
 
 .brands-list img {
-  height: 36px;
-  width: auto;
   object-fit: contain;
   filter: grayscale(1) opacity(0.55);
   transition: filter 0.35s ease;
@@ -366,6 +359,27 @@ p {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
+
+.logo-box {
+  max-width: 230px;  /* Limite máximo de largura */
+  height: 40px;  /* Limite máximo de altura */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 25px;
+  margin-right: 55px;
+}
+
+/* Aqui está a mágica do object-fit */
+.logo-box img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
 
 /* ============================================================
    INSTAGRAM

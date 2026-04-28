@@ -1,10 +1,4 @@
-/* ============================================================
-   DISK CONCEPT — main.js
-   1. Carrossel (drag + botões + touch)
-   2. Reveal on scroll
-   ============================================================ */
-
-// ── 1. CARROSSEL ──────────────────────────────────────────────
+// ── CARROSSEL ──────────────────────────────────────────────
 const carousel = document.getElementById('mainCarousel');
 const prevBtn  = document.getElementById('prevBtn');
 const nextBtn  = document.getElementById('nextBtn');
@@ -56,8 +50,7 @@ const slideBy = dir => {
 prevBtn.addEventListener('click', () => slideBy(-1));
 nextBtn.addEventListener('click', () => slideBy(1));
 
-// ── 2. REVEAL ON SCROLL ───────────────────────────────────────
-// Aqui está o código que estava faltando para as coisas aparecerem
+// ── REVEAL ON SCROLL ───────────────────────────────────────
 const observerOptions = {
   root: null,
   rootMargin: '0px',
