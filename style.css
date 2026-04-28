@@ -337,8 +337,6 @@ p {
   will-change: transform;
 }
 
-.brands-track:hover { animation-play-state: paused; }
-
 .brands-list {
   display: flex;
   align-items: center;
