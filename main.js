@@ -2,6 +2,8 @@
 const carousel = document.getElementById('mainCarousel');
 const prevBtn  = document.getElementById('prevBtn');
 const nextBtn  = document.getElementById('nextBtn');
+const carouselItems = carousel.querySelectorAll('.carousel-item');
+const itemCount = carouselItems.length;
 
 let drag = { active: false, startX: 0, scrollLeft: 0, moved: false };
 
@@ -43,8 +45,10 @@ carousel.addEventListener('touchend',   () => dragEnd());
 // Botões
 const slideBy = dir => {
   const itemW = carousel.querySelector('.carousel-item')?.offsetWidth || 0;
-  const cur   = Math.round(carousel.scrollLeft / itemW);
-  carousel.scrollTo({ left: (cur + dir) * itemW, behavior: 'smooth' });
+  if (!itemW) return;
+  const cur = Math.round(carousel.scrollLeft / itemW);
+  const next = (cur + dir + itemCount) % itemCount;
+  carousel.scrollTo({ left: next * itemW, behavior: 'smooth' });
 };
 
 prevBtn.addEventListener('click', () => slideBy(-1));
@@ -54,14 +58,14 @@ nextBtn.addEventListener('click', () => slideBy(1));
 const observerOptions = {
   root: null,
   rootMargin: '0px',
-  threshold: 0.15 // Ativa quando 15% do elemento aparece
+  threshold: 0.15
 };
 
 const observer = new IntersectionObserver((entries, observer) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
-      observer.unobserve(entry.target); // Para de observar depois que apareceu (performance)
+      observer.unobserve(entry.target);
     }
   });
 }, observerOptions);
@@ -73,7 +77,7 @@ document.querySelectorAll('.reveal').forEach(el => {
 
 // ── AUTOPLAY DO CARROSSEL ──────────────────────────────────
 let autoPlayInterval;
-const autoPlayDelay = 3000; // Tempo em milissegundos (3 segundos)
+const autoPlayDelay = 2800;
 
 function startAutoPlay() {
   autoPlayInterval = setInterval(() => {
@@ -85,13 +89,10 @@ function stopAutoPlay() {
   clearInterval(autoPlayInterval);
 }
 
-// Inicia o autoplay assim que a página carrega
 startAutoPlay();
 
-// Pausa quando o mouse está sobre o carrossel e volta quando sai
 carousel.addEventListener('mouseenter', stopAutoPlay);
 carousel.addEventListener('mouseleave', startAutoPlay);
 
-// Para mobile: pausa ao tocar e volta ao soltar
 carousel.addEventListener('touchstart', stopAutoPlay, { passive: true });
 carousel.addEventListener('touchend', startAutoPlay);

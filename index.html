@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Vinicius Costa Germano">
   <title>Disk Concept | Elegância é se sentir bem</title>
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,10 +12,13 @@
 </head>
 <body>
 
-  <!-- HERO -->
+
   <header class="hero">
-    <video class="hero-video" autoplay loop muted playsinline poster="assets/Header.jpg">
+    <video class="hero-video hero-video--desktop" preload="metadata" autoplay loop muted playsinline poster="assets/Header.jpg">
       <source src="assets/PC_header_site_disk-concept.mp4" type="video/mp4">
+    </video>
+    <video class="hero-video hero-video--mobile" preload="metadata" autoplay loop muted playsinline poster="assets/Mobile_Header.jpg">
+      <source src="assets/Mobile_header_site_disk-concept.mp4" type="video/mp4">
     </video>
     <div class="hero-overlay"></div>
     <div class="hero-content">
@@ -22,13 +26,15 @@
       <p class="hero-tagline">Elegância é se sentir bem</p>
     </div>
     <a href="#welcome" class="scroll-down" aria-label="Rolar para baixo">
-      <span class="scroll-line"></span>
+      <svg class="scroll-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M12 5v14m0 0l-6-6m6 6l6-6" />
+      </svg>
     </a>
   </header>
 
   <main>
 
-    <!-- BEM-VINDA -->
+
     <section class="section" id="welcome">
       <div class="container welcome-grid">
         <div class="text-block reveal">
@@ -55,7 +61,7 @@
       </div>
     </section>
 
-    <!-- AQUI VOCÊ ENCONTRA -->
+
     <section class="section section--sand">
       <div class="container text-center">
         <span class="eyebrow reveal">Curadoria</span>
@@ -85,7 +91,7 @@
       </div>
     </section>
 
-    <!-- MARCAS -->
+
     <section class="section">
       <div class="container text-center">
         <h2 class="reveal">As melhores marcas</h2>
@@ -124,7 +130,7 @@
       </div>
     </section>
 
-    <!-- INSTAGRAM -->
+
     <section class="section">
       <div class="container text-center">
         <span class="eyebrow reveal">Novidades</span>
@@ -137,11 +143,11 @@
       </div>
     </section>
 
-    <!-- ONDE ESTAMOS -->
+
     <section class="section section--sand">
       <div class="container location-grid">
         <div class="map-box reveal">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3466.3014754796072!2d-51.119625899999996!3d-29.682038!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95194328880a3165%3A0xe695100caacd9d69!2sDisk%20Concept!5e0!3m2!1spt-BR!2sbr!4v1777409080235!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3466.3014754796072!2d-51.119625899999996!3d-29.682038!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95194328880a3165%3A0xe695100caacd9d69!2sDisk%20Concept!5e0!3m2!1spt-BR!2sbr!4v1777409080235!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
         <div class="info-box reveal">
           <span class="eyebrow">Visite-nos</span>
@@ -163,7 +169,6 @@
 
   </main>
 
-  <!-- FOOTER -->
   <footer class="main-footer">
     <img src="assets/Logo Disk Concept.svg" alt="Disk Concept" class="footer-logo">
     <p class="footer-tagline">Elegância é se sentir bem.</p>

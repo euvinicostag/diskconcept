@@ -4,7 +4,6 @@
    Tipografia: Cormorant Garamond (títulos) + Jost (corpo)
    ============================================================ */
 
-/* VARIÁVEIS */
 :root {
   --sand: #EAE6DF;
   --sand-dark: #D8D3CA;
@@ -12,11 +11,10 @@
   --dark: #2C2C2C;
   --mid: #7A7568;
   --accent: #5A5147;
-  --radius: 6px;
+  --radius: 8px;
   --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* RESET */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 img { display: block; max-width: 100%; }
@@ -29,7 +27,6 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* TIPOGRAFIA */
 h1, h2, h3 {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 400;
@@ -58,11 +55,10 @@ p {
   margin-bottom: 0.6rem;
 }
 
-/* LAYOUT */
 .container {
   max-width: 1160px;
   margin: 0 auto;
-  padding: 90px 24px;
+  padding: 64px 20px;
 }
 
 .text-center { text-align: center; }
@@ -78,14 +74,15 @@ p {
    ============================================================ */
 .hero {
   position: relative;
-  height: 100svh;
-  min-height: 600px;
+  min-height: 70svh;
+  height: min(100svh, 760px);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   color: #fff;
+  background: var(--dark);
 }
 
 .hero-video {
@@ -95,6 +92,14 @@ p {
   height: 100%;
   object-fit: cover;
   z-index: 0;
+}
+
+.hero-video--desktop { display: block; }
+.hero-video--mobile { display: none; }
+
+@media (max-width: 900px) {
+  .hero-video--desktop { display: none; }
+  .hero-video--mobile { display: block; }
 }
 
 .hero-overlay {
@@ -112,11 +117,11 @@ p {
   align-items: center;
   gap: 20px;
   text-align: center;
-  padding: 0 20px;
+  padding: 0 18px;
 }
 
 .main-logo {
-  width: min(280px, 55vw);
+  width: min(260px, 55vw);
   filter: brightness(0) invert(1);
 }
 
@@ -130,26 +135,36 @@ p {
   margin: 0;
 }
 
-/* Seta de scroll */
 .scroll-down {
   position: absolute;
-  bottom: 38px;
+  bottom: 50px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.25);
+  transition: transform 0.25s ease, background 0.25s ease;
   text-decoration: none;
 }
 
-.scroll-line {
-  display: block;
-  width: 1px;
-  height: 55px;
-  background: rgba(255,255,255,0.5);
-  animation: scrollPulse 2s ease-in-out infinite;
-  transform-origin: top;
+.scroll-down:hover {
+  transform: translateX(-50%) translateY(-2px);
+  background: rgba(255,255,255,0.15);
+}
+
+.scroll-icon {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: rgba(255,255,255,0.95);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 @keyframes scrollPulse {
@@ -180,7 +195,6 @@ p {
   color: var(--white);
 }
 
-/* Botão sobre fundo escuro (footer etc.) */
 .btn-outline--light {
   border-color: rgba(255,255,255,0.7);
   color: #fff;
@@ -191,7 +205,7 @@ p {
 }
 
 /* ============================================================
-   SEÇÃO BOAS-VINDAS
+   BOAS-VINDAS
    ============================================================ */
 .welcome-grid {
   display: grid;
@@ -202,12 +216,13 @@ p {
 
 @media (min-width: 900px) {
   .welcome-grid { grid-template-columns: 1fr 1fr; }
+  .container { padding: 90px 24px; }
 }
 
 .text-block p { max-width: 480px; }
 
 /* ============================================================
-   CARROSSEL
+   CARROSSEL 
    ============================================================ */
 .carousel-wrapper {
   position: relative;
@@ -237,7 +252,7 @@ p {
 
 .carousel-item img {
   width: 100%;
-  height: clamp(300px, 45vw, 480px);
+  height: clamp(260px, 40vw, 460px);
   object-fit: cover;
   border-radius: var(--radius);
   display: block;
@@ -252,8 +267,8 @@ p {
 }
 
 .carousel-btn {
-  width: 38px;
-  height: 38px;
+  width: 44px;
+  height: 44px;
   border: 1px solid var(--sand-dark);
   background: transparent;
   border-radius: 50%;
@@ -321,7 +336,7 @@ p {
 }
 
 /* ============================================================
-   MARCAS — slider infinito
+   MARCAS
    ============================================================ */
 .brands-track-wrapper {
   overflow: hidden;
@@ -359,8 +374,8 @@ p {
 }
 
 .logo-box {
-  max-width: 230px;  /* Limite máximo de largura */
-  height: 40px;  /* Limite máximo de altura */
+  max-width: 230px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -369,7 +384,6 @@ p {
   margin-right: 55px;
 }
 
-/* Aqui está a mágica do object-fit */
 .logo-box img {
   max-width: 100%;
   max-height: 100%;
@@ -378,9 +392,8 @@ p {
   object-fit: contain;
 }
 
-
 /* ============================================================
-   INSTAGRAM
+   INSTA
    ============================================================ */
 .insta-subtitle {
   font-size: 0.75rem;
@@ -406,7 +419,8 @@ p {
 .map-box {
   border-radius: var(--radius);
   overflow: hidden;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 5 / 4;
+  min-height: 480px;
 }
 
 .map-box iframe {
@@ -505,12 +519,12 @@ p {
 }
 
 /* ============================================================
-   REVEAL (animação de entrada)
+   REVEAL
    ============================================================ */
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.75s ease, transform 0.75s ease;
+  transform: translateY(24px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
 }
 
 .reveal.visible {
@@ -521,8 +535,27 @@ p {
 /* ============================================================
    RESPONSIVO GERAL
    ============================================================ */
+@media (max-width: 900px) {
+  .hero { min-height: 72svh; }
+  .hero-video--desktop { display: none; }
+  .hero-video--mobile { display: block; }
+  .hero { background: #1e1b18 url("assets/Header.jpg") center/cover no-repeat; background-size: cover; }
+  .hero-content { padding: 0 18px; }
+  .main-logo { width: min(220px, 55vw); }
+  .hero-tagline { font-size: 0.65rem; letter-spacing: 0.3em; }
+  .btn-outline { padding: 12px 30px; }
+  .carousel-item img { height: clamp(300px, 52vw, 520px); }
+  .carousel-controls { justify-content: center; margin-top: 18px; }
+  .carousel-btn { width: 48px; height: 48px; }
+  .location-grid { grid-template-columns: 1fr; }
+  .info-box { order: 1; }
+  .map-box { order: 2; }
+}
+
 @media (max-width: 600px) {
   .container { padding: 64px 20px; }
   h2 { font-size: 2rem; }
   .main-logo { width: 200px; }
+  .hero { min-height: 68svh; }
+  .map-box { aspect-ratio: 1 / 1; min-height: 360px; }
 }
