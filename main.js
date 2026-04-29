@@ -54,6 +54,7 @@ const slideBy = dir => {
 prevBtn.addEventListener('click', () => slideBy(-1));
 nextBtn.addEventListener('click', () => slideBy(1));
 
+
 // ── REVEAL ON SCROLL ───────────────────────────────────────
 const observerOptions = {
   root: null,
@@ -72,6 +73,19 @@ const observer = new IntersectionObserver((entries, observer) => {
 
 document.querySelectorAll('.reveal').forEach(el => {
   observer.observe(el);
+});
+
+
+// Seleciona apenas o link <a> que contém o href
+document.querySelectorAll('.scroll-down').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const targetId = this.getAttribute('href');
+    const targetElement = document.querySelector(targetId);
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
 });
 
 
