@@ -74,7 +74,7 @@ p {
    ============================================================ */
 .hero {
   position: relative;
-  min-height: 70svh;
+  min-height: 100svh;
   height: min(100svh, 760px);
   display: flex;
   flex-direction: column;
